@@ -1,4 +1,18 @@
-## A Simple Server with Python Flask
+## A simple tool to transmit files from a Raspberry Pi using HF radios 
+
+
+
+
+=====To complete====
+
+
+
+
+
+
+
+
+
 
 This is a simple skeleton Flask server project that works on any of the devices supported by [resin.io][resin-link].
 
