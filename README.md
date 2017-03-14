@@ -13,7 +13,7 @@ Click on your application, and download the ResinOS image for this application.
 
 5) Clone this repo locally
 ```
-$ git clone git@github.com:resin-projects/simple-server-python.git
+$ git clone git@github.com:gbelbe/pi-radio-transfer.git
 ```
 Then add your resin.io application's remote:
 ```
