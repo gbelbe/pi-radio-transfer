@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.8'?>
+<?grc format='1' created='3.7.10'?>
 <flow_graph>
   <timestamp>Wed Mar 15 20:19:16 2017</timestamp>
   <block>
@@ -41,6 +41,10 @@
       <value>qt_gui</value>
     </param>
     <param>
+      <key>hier_block_src_path</key>
+      <value>.:</value>
+    </param>
+    <param>
       <key>id</key>
       <value>top_block</value>
     </param>
@@ -49,8 +53,16 @@
       <value>0</value>
     </param>
     <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
       <key>realtime_scheduling</key>
       <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
     </param>
     <param>
       <key>run_options</key>
@@ -461,7 +473,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/ubuntu/test_rx_file</value>
+      <value>/home/gbelbe/Develop/pi-radio-transfer/src/test_rx_file</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -508,11 +520,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/ubuntu/test_file</value>
+      <value>/home/gbelbe/Develop/pi-radio-transfer/src/test_src_file</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 27)</value>
+      <value>(175, 27)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -954,6 +966,10 @@
       <value>True</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -1310,6 +1326,10 @@
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>axislabels</key>
       <value>True</value>
     </param>
     <param>
@@ -1672,6 +1692,10 @@
       <value>True</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -2028,6 +2052,10 @@
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>axislabels</key>
       <value>True</value>
     </param>
     <param>

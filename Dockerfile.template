@@ -1,15 +1,10 @@
 # base-image for python on any machine using a template variable,
-# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
-FROM resin/%%RESIN_MACHINE_NAME%%-python
+# see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templatesFROM resin/%%RESIN_MACHINE_NAME%%-python
 
-# Install ALSA sound utils, just uncomment the lines below.
- RUN apt-get update && apt-get install -yq \
-    alsa-utils libasound2-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install ALSA sound utils and GnuRadio
 
-# Install GNU-RADIO
  RUN apt-get update && apt-get install -yq \
-    gnuradio && \
+    alsa-utils libasound2-dev gnuradio-dev  && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 

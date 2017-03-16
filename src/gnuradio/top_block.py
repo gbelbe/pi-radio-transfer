@@ -1,8 +1,9 @@
 #!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Wed Mar 15 22:40:48 2017
+# Generated: Thu Mar 16 00:26:48 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -37,9 +38,9 @@ class top_block(gr.top_block, Qt.QWidget):
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Top Block")
         try:
-             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
+            self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
-             pass
+            pass
         self.top_scroll_layout = Qt.QVBoxLayout()
         self.setLayout(self.top_scroll_layout)
         self.top_scroll = Qt.QScrollArea()
@@ -78,19 +79,20 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1_1.set_update_time(0.10)
         self.qtgui_time_sink_x_1_1.set_y_axis(-1, 1)
         
-        self.qtgui_time_sink_x_1_1.set_y_label("Amplitude", "")
+        self.qtgui_time_sink_x_1_1.set_y_label('Amplitude', "")
         
         self.qtgui_time_sink_x_1_1.enable_tags(-1, True)
         self.qtgui_time_sink_x_1_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_1_1.enable_autoscale(True)
         self.qtgui_time_sink_x_1_1.enable_grid(False)
+        self.qtgui_time_sink_x_1_1.enable_axis_labels(True)
         self.qtgui_time_sink_x_1_1.enable_control_panel(False)
         
         if not True:
           self.qtgui_time_sink_x_1_1.disable_legend()
         
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -124,19 +126,20 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1_0.set_update_time(0.10)
         self.qtgui_time_sink_x_1_0.set_y_axis(-1, 1)
         
-        self.qtgui_time_sink_x_1_0.set_y_label("Amplitude", "")
+        self.qtgui_time_sink_x_1_0.set_y_label('Amplitude', "")
         
         self.qtgui_time_sink_x_1_0.enable_tags(-1, True)
         self.qtgui_time_sink_x_1_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_1_0.enable_autoscale(True)
         self.qtgui_time_sink_x_1_0.enable_grid(False)
+        self.qtgui_time_sink_x_1_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_1_0.enable_control_panel(False)
         
         if not True:
           self.qtgui_time_sink_x_1_0.disable_legend()
         
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -170,19 +173,20 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1.set_update_time(0.10)
         self.qtgui_time_sink_x_1.set_y_axis(-1, 1)
         
-        self.qtgui_time_sink_x_1.set_y_label("Amplitude", "")
+        self.qtgui_time_sink_x_1.set_y_label('Amplitude', "")
         
         self.qtgui_time_sink_x_1.enable_tags(-1, True)
         self.qtgui_time_sink_x_1.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_1.enable_autoscale(True)
         self.qtgui_time_sink_x_1.enable_grid(False)
+        self.qtgui_time_sink_x_1.enable_axis_labels(True)
         self.qtgui_time_sink_x_1.enable_control_panel(False)
         
         if not True:
           self.qtgui_time_sink_x_1.disable_legend()
         
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -216,19 +220,20 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_update_time(0.10)
         self.qtgui_time_sink_x_0.set_y_axis(-2, 2)
         
-        self.qtgui_time_sink_x_0.set_y_label("Amplitude", "")
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
         
         self.qtgui_time_sink_x_0.enable_tags(-1, True)
         self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
         self.qtgui_time_sink_x_0.enable_autoscale(True)
         self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
         
         if not True:
           self.qtgui_time_sink_x_0.disable_legend()
         
-        labels = ["", "", "", "", "",
-                  "", "", "", "", ""]
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
         widths = [1, 1, 1, 1, 1,
                   1, 1, 1, 1, 1]
         colors = ["blue", "red", "green", "black", "cyan",
@@ -254,15 +259,15 @@ class top_block(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.digital_simple_framer_0 = digital.simple_framer(16)
-        self.digital_correlate_access_code_tag_bb_0 = digital.correlate_access_code_tag_bb("0xacdda4e2f28c20fcULL", 10, "FRAME")
+        self.digital_correlate_access_code_tag_bb_0 = digital.correlate_access_code_tag_bb('0xacdda4e2f28c20fcULL', 10, 'FRAME')
         self.digital_chunks_to_symbols_xx_0 = digital.chunks_to_symbols_bf(([-1,1]), 1)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, sound_card_sample_rate,True)
         self.blocks_threshold_ff_0 = blocks.threshold_ff(-0.1, 0.1, 0)
         self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.1, ))
         self.blocks_float_to_uchar_0 = blocks.float_to_uchar()
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, "/home/ubuntu/test_file", True)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, "/home/ubuntu/test_rx_file", False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/gbelbe/Develop/pi-radio-transfer/src/test_src_file', True)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/gbelbe/Develop/pi-radio-transfer/src/test_rx_file', False)
         self.blocks_file_sink_0.set_unbuffered(True)
         self.blocks_add_xx_0 = blocks.add_vff(1)
         self.analog_noise_source_x_0 = analog.noise_source_f(analog.GR_GAUSSIAN, 0.1, 0)
@@ -301,37 +306,38 @@ class top_block(gr.top_block, Qt.QWidget):
 
     def set_symbol_rate(self, symbol_rate):
         self.symbol_rate = symbol_rate
+        self.qtgui_time_sink_x_1.set_samp_rate(self.symbol_rate)
         self.analog_agc2_xx_0.set_attack_rate(self.symbol_rate)
         self.analog_agc2_xx_0.set_decay_rate(self.symbol_rate/1000)
-        self.qtgui_time_sink_x_1.set_samp_rate(self.symbol_rate)
 
     def get_sound_card_sample_rate(self):
         return self.sound_card_sample_rate
 
     def set_sound_card_sample_rate(self, sound_card_sample_rate):
         self.sound_card_sample_rate = sound_card_sample_rate
-        self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
-        self.qtgui_time_sink_x_0.set_samp_rate(self.sound_card_sample_rate)
-        self.qtgui_time_sink_x_1_0.set_samp_rate(self.sound_card_sample_rate)
         self.qtgui_time_sink_x_1_1.set_samp_rate(self.sound_card_sample_rate)
+        self.qtgui_time_sink_x_1_0.set_samp_rate(self.sound_card_sample_rate)
+        self.qtgui_time_sink_x_0.set_samp_rate(self.sound_card_sample_rate)
+        self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
 
     def get_variable_rrc_filter_taps(self):
         return self.variable_rrc_filter_taps
 
     def set_variable_rrc_filter_taps(self, variable_rrc_filter_taps):
         self.variable_rrc_filter_taps = variable_rrc_filter_taps
-        self.rational_resampler_base_xxx_0.set_taps((self.variable_rrc_filter_taps))
         self.rational_resampler_base_xxx_0_0.set_taps((self.variable_rrc_filter_taps))
+        self.rational_resampler_base_xxx_0.set_taps((self.variable_rrc_filter_taps))
 
 
-if __name__ == '__main__':
-    parser = OptionParser(option_class=eng_option, usage="%prog: [options]")
-    (options, args) = parser.parse_args()
+def main(top_block_cls=top_block, options=None):
+
     from distutils.version import StrictVersion
     if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
-        Qt.QApplication.setGraphicsSystem(gr.prefs().get_string('qtgui','style','raster'))
+        style = gr.prefs().get_string('qtgui', 'style', 'raster')
+        Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
-    tb = top_block()
+
+    tb = top_block_cls()
     tb.start()
     tb.show()
 
@@ -340,4 +346,7 @@ if __name__ == '__main__':
         tb.wait()
     qapp.connect(qapp, Qt.SIGNAL("aboutToQuit()"), quitting)
     qapp.exec_()
-    tb = None  # to clean up Qt widgets
+
+
+if __name__ == '__main__':
+    main()
