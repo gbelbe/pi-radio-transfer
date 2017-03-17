@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Thu Mar 16 00:26:48 2017
+# Generated: Fri Mar 17 14:09:50 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -258,13 +258,56 @@ class top_block(gr.top_block, Qt.QWidget):
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
+        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_f(
+        	4096, #size
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	sound_card_sample_rate, #bw
+        	"", #name
+        	1 #number of inputs
+        )
+        self.qtgui_freq_sink_x_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0.enable_autoscale(True)
+        self.qtgui_freq_sink_x_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0.set_fft_average(0.2)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0.enable_control_panel(False)
+        
+        if not True:
+          self.qtgui_freq_sink_x_0.disable_legend()
+        
+        if "float" == "float" or "float" == "msg_float":
+          self.qtgui_freq_sink_x_0.set_plot_pos_half(not True)
+        
+        labels = ['', '', '', '', '',
+                  '', '', '', '', '']
+        widths = [1, 1, 1, 1, 1,
+                  1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+                  "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+                  1.0, 1.0, 1.0, 1.0, 1.0]
+        for i in xrange(1):
+            if len(labels[i]) == 0:
+                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
+        
+        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.digital_simple_framer_0 = digital.simple_framer(16)
         self.digital_correlate_access_code_tag_bb_0 = digital.correlate_access_code_tag_bb('0xacdda4e2f28c20fcULL', 10, 'FRAME')
         self.digital_chunks_to_symbols_xx_0 = digital.chunks_to_symbols_bf(([-1,1]), 1)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, sound_card_sample_rate,True)
         self.blocks_threshold_ff_0 = blocks.threshold_ff(-0.1, 0.1, 0)
         self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.1, ))
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vff((0.01, ))
         self.blocks_float_to_uchar_0 = blocks.float_to_uchar()
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/gbelbe/Develop/pi-radio-transfer/src/test_src_file', True)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/gbelbe/Develop/pi-radio-transfer/src/test_rx_file', False)
@@ -284,6 +327,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_file_source_0, 0), (self.digital_simple_framer_0, 0))    
         self.connect((self.blocks_float_to_uchar_0, 0), (self.digital_correlate_access_code_tag_bb_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.analog_agc2_xx_0, 0))    
+        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_freq_sink_x_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.qtgui_time_sink_x_1_0, 0))    
         self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.digital_chunks_to_symbols_xx_0, 0))    
         self.connect((self.blocks_threshold_ff_0, 0), (self.blocks_float_to_uchar_0, 0))    
@@ -318,6 +362,7 @@ class top_block(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_1_1.set_samp_rate(self.sound_card_sample_rate)
         self.qtgui_time_sink_x_1_0.set_samp_rate(self.sound_card_sample_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.sound_card_sample_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.sound_card_sample_rate)
         self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
 
     def get_variable_rrc_filter_taps(self):
