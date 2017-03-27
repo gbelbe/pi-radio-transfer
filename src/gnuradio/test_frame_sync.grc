@@ -155,11 +155,11 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/gbelbe/Develop/pi-radio-transfer/src/test_src_file</value>
+      <value>test_src_file.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(139, 173)</value>
+      <value>(146, 175)</value>
     </param>
     <param>
       <key>_rotation</key>
