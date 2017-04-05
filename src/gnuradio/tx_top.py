@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Tx Top
-# Generated: Wed Mar 29 23:14:59 2017
+# Generated: Wed Apr  5 22:02:03 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -69,7 +69,6 @@ class tx_top(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.rational_resampler_base_xxx_0 = filter.rational_resampler_base_fff(samples_per_symbol, 1, (variable_rrc_filter_taps))
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
         	500, #size
         	sound_card_sample_rate, #samp_rate
@@ -116,23 +115,27 @@ class tx_top(gr.top_block, Qt.QWidget):
         
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
-        self.digital_simple_framer_0 = digital.simple_framer(16)
+        self.interp_fir_filter_xxx_0 = filter.interp_fir_filter_fff(samples_per_symbol, (variable_rrc_filter_taps))
+        self.interp_fir_filter_xxx_0.declare_sample_delay(0)
+        self.digital_hdlc_framer_pb_0 = digital.hdlc_framer_pb("packet_len")
         self.digital_chunks_to_symbols_xx_0 = digital.chunks_to_symbols_bf(([-1,1]), 1)
-        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("tx_signal.wav", 1, sound_card_sample_rate, 16)
+        self.blocks_wavfile_sink_0 = blocks.wavfile_sink("tx_signal.wav", 1, sound_card_sample_rate, 8)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, sound_card_sample_rate,True)
-        self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(bits_per_symbol, gr.GR_MSB_FIRST)
+        self.blocks_tagged_stream_to_pdu_0 = blocks.tagged_stream_to_pdu(blocks.byte_t, "packet_len")
+        self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, 32, "packet_len")
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, "./pi-radio-transfer/src/gnuradio/test_src_file.txt", True)
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_file_source_0, 0), (self.digital_simple_framer_0, 0))    
-        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.digital_chunks_to_symbols_xx_0, 0))    
-        self.connect((self.blocks_throttle_0, 0), (self.rational_resampler_base_xxx_0, 0))    
-        self.connect((self.digital_chunks_to_symbols_xx_0, 0), (self.blocks_throttle_0, 0))    
-        self.connect((self.digital_simple_framer_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))    
-        self.connect((self.rational_resampler_base_xxx_0, 0), (self.blocks_wavfile_sink_0, 0))    
-        self.connect((self.rational_resampler_base_xxx_0, 0), (self.qtgui_time_sink_x_0, 0))    
+        self.msg_connect((self.blocks_tagged_stream_to_pdu_0, 'pdus'), (self.digital_hdlc_framer_pb_0, 'in'))    
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_stream_to_tagged_stream_0, 0))    
+        self.connect((self.blocks_stream_to_tagged_stream_0, 0), (self.blocks_tagged_stream_to_pdu_0, 0))    
+        self.connect((self.blocks_throttle_0, 0), (self.qtgui_time_sink_x_0, 0))    
+        self.connect((self.digital_chunks_to_symbols_xx_0, 0), (self.interp_fir_filter_xxx_0, 0))    
+        self.connect((self.digital_hdlc_framer_pb_0, 0), (self.digital_chunks_to_symbols_xx_0, 0))    
+        self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_throttle_0, 0))    
+        self.connect((self.interp_fir_filter_xxx_0, 0), (self.blocks_wavfile_sink_0, 0))    
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "tx_top")
@@ -146,8 +149,8 @@ class tx_top(gr.top_block, Qt.QWidget):
     def set_sound_card_sample_rate(self, sound_card_sample_rate):
         self.sound_card_sample_rate = sound_card_sample_rate
         self.set_symbol_rate(self.sound_card_sample_rate/self.samples_per_symbol)
-        self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.sound_card_sample_rate)
+        self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
 
     def get_samples_per_symbol(self):
         return self.samples_per_symbol
@@ -167,7 +170,7 @@ class tx_top(gr.top_block, Qt.QWidget):
 
     def set_variable_rrc_filter_taps(self, variable_rrc_filter_taps):
         self.variable_rrc_filter_taps = variable_rrc_filter_taps
-        self.rational_resampler_base_xxx_0.set_taps((self.variable_rrc_filter_taps))
+        self.interp_fir_filter_xxx_0.set_taps((self.variable_rrc_filter_taps))
 
     def get_bits_per_symbol(self):
         return self.bits_per_symbol
