@@ -4,7 +4,7 @@
 
 # python files #
 ###################
-*.py
+#*.py
 
 # .dat files / text generated files from decoding wave
 ######################
