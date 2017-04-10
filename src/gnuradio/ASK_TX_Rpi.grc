@@ -299,7 +299,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/gbelbe/Develop/pi-radio-transfer/src/gnuradio/test_src_file.txt</value>
+      <value>test_src_file.txt</value>
     </param>
     <param>
       <key>_coordinate</key>

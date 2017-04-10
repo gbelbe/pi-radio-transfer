@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Tx Top
-# Generated: Sun Apr  9 19:13:49 2017
+# Generated: Mon Apr 10 08:33:07 2017
 ##################################################
 
 from gnuradio import audio
@@ -43,7 +43,7 @@ class tx_top(gr.top_block):
         self.blocks_wavfile_sink_0 = blocks.wavfile_sink('tx_signal.wav', 1, int(sound_card_sample_rate), 8)
         self.blocks_tagged_stream_to_pdu_0 = blocks.tagged_stream_to_pdu(blocks.byte_t, 'packet_len')
         self.blocks_stream_to_tagged_stream_0 = blocks.stream_to_tagged_stream(gr.sizeof_char, 1, 32, "packet_len")
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/gbelbe/Develop/pi-radio-transfer/src/gnuradio/test_src_file.txt', False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, 'test_src_file.txt', False)
         self.audio_sink_0 = audio.sink(int(sound_card_sample_rate), '', True)
 
         ##################################################
