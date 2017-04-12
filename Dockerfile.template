@@ -2,12 +2,13 @@
 # see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
 FROM resin/%%RESIN_MACHINE_NAME%%-python
 
-# Install ALSA sound utils and GnuRadio
+# Install ALSA sound utils and GnuRadio and 7zip
 
- RUN apt-get update && apt-get install -yq \
-    alsa-utils libasound2-dev gnuradio-dev  && \
+RUN apt-get update && apt-get install -yq \
+    alsa-utils libasound2-dev gnuradio-dev p7zip-full && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+sudo apt-get install p7zip-full
 
 # Set our working directory
 WORKDIR /usr/src/app
