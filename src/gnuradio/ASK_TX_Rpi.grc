@@ -299,7 +299,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>test_src_file.txt</value>
+      <value>/home/gbelbe/Develop/pi-radio-transfer/src/gnuradio/IMGP7081.JPG</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -731,7 +731,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(814, 402)</value>
+      <value>(600, 528)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1115,6 +1115,12 @@
   <connection>
     <source_block_id>interp_fir_filter_xxx_0</source_block_id>
     <sink_block_id>blocks_wavfile_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>interp_fir_filter_xxx_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
