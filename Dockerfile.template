@@ -8,8 +8,6 @@ RUN apt-get update && apt-get install -yq \
     alsa-utils libasound2-dev gnuradio-dev p7zip-full && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-sudo apt-get install p7zip-full
-
 # Set our working directory
 WORKDIR /usr/src/app
 
