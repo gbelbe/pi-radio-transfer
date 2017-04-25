@@ -16,7 +16,7 @@ WORKDIR /usr/src/app
 COPY ./requirements.txt /requirements.txt
 
 # Copy alsa-conf file to setup usb audio sound card as default
-COPY ./alsa-base.conf ../../etc/modprobe.d/alsa-base.conf
+COPY ./alsa-base.conf ../../../etc/modprobe.d/alsa-base.conf
 
 
 # pip install python deps from requirements.txt on the resin.io build server
