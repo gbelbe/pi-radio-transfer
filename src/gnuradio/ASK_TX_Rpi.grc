@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>tx_top</value>
+      <value>ask_tx_top_raspi</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -66,7 +66,7 @@
     </param>
     <param>
       <key>run_options</key>
-      <value>run</value>
+      <value>prompt</value>
     </param>
     <param>
       <key>run</key>
@@ -79,6 +79,33 @@
     <param>
       <key>title</key>
       <value></value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(720, 9)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>bit_rate</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>symbol_rate/bits_per_symbol</value>
     </param>
   </block>
   <block>
@@ -159,7 +186,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>24000</value>
+      <value>44000</value>
     </param>
   </block>
   <block>
@@ -205,7 +232,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 361)</value>
+      <value>(302, 361)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -256,7 +283,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(826, 325)</value>
+      <value>(1096, 325)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -299,7 +326,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/usr/src/app/test_src_file.txt</value>
+      <value>./test_src_file.txt</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -327,7 +354,7 @@
     </param>
     <param>
       <key>repeat</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>vlen</key>
@@ -354,7 +381,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 117)</value>
+      <value>(478, 117)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -409,7 +436,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 124)</value>
+      <value>(789, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -456,7 +483,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(494, 398)</value>
+      <value>(764, 398)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -492,6 +519,61 @@
     </param>
   </block>
   <block>
+    <key>blocks_throttle</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(239, 131)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_throttle_1</value>
+    </param>
+    <param>
+      <key>ignoretag</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samples_per_second</key>
+      <value>bit_rate</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_wavfile_sink</key>
     <param>
       <key>bits_per_sample</key>
@@ -519,7 +601,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 214)</value>
+      <value>(966, 214)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -562,7 +644,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 229)</value>
+      <value>(326, 229)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -621,7 +703,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(664, 124)</value>
+      <value>(1036, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -660,7 +742,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 229)</value>
+      <value>(542, 229)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -731,7 +813,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(600, 528)</value>
+      <value>(870, 528)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1060,7 +1142,7 @@
   </block>
   <connection>
     <source_block_id>blocks_file_source_0</source_block_id>
-    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
+    <sink_block_id>blocks_throttle_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1085,6 +1167,12 @@
   <connection>
     <source_block_id>blocks_throttle_0</source_block_id>
     <sink_block_id>blocks_wavfile_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_throttle_1</source_block_id>
+    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
