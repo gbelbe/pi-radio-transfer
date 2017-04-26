@@ -2,8 +2,11 @@
 # see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
 FROM resin/%%RESIN_MACHINE_NAME%%-python
 
-
 # Install ALSA sound utils and GnuRadio and 7zip
+
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+
+COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -yq \
     alsa-utils libasound2 gnuradio p7zip-full && \
@@ -16,7 +19,7 @@ WORKDIR /usr/src/app
 COPY ./requirements.txt /requirements.txt
 
 # Copy alsa-conf file to setup usb audio sound card as default
-COPY ./alsa-base.conf ../../../etc/modprobe.d/alsa-base.conf
+COPY ./alsa-base.conf /etc/modprobe.d/alsa-base.conf
 
 
 # pip install python deps from requirements.txt on the resin.io build server
