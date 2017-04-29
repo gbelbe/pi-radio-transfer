@@ -9,7 +9,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -yq \
-    alsa-utils libasound2 gnuradio p7zip-full && \
+    alsa-utils libasound2 gnuradio p7zip-full cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set our working directory
