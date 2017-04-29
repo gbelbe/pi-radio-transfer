@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Rx Top
-# Generated: Fri Apr  7 22:48:48 2017
+# Generated: Wed Apr 26 22:57:17 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -17,6 +17,7 @@ if __name__ == '__main__':
             print "Warning: failed to XInitThreads()"
 
 from PyQt4 import Qt
+from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import digital
 from gnuradio import eng_notation
@@ -58,7 +59,7 @@ class rx_top(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.sound_card_sample_rate = sound_card_sample_rate = 96000
+        self.sound_card_sample_rate = sound_card_sample_rate = 44000
         self.samples_per_symbol = samples_per_symbol = 19
         self.symbol_rate = symbol_rate = sound_card_sample_rate/samples_per_symbol
         self.bits_per_symbol = bits_per_symbol = 1
@@ -305,28 +306,68 @@ class rx_top(gr.top_block, Qt.QWidget):
         
         self._qtgui_time_sink_x_1_win = sip.wrapinstance(self.qtgui_time_sink_x_1.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_1_win)
+        self.qtgui_sink_x_0_1 = qtgui.sink_f(
+        	1024, #fftsize
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	sound_card_sample_rate, #bw
+        	"sync symbols", #name
+        	True, #plotfreq
+        	True, #plotwaterfall
+        	True, #plottime
+        	True, #plotconst
+        )
+        self.qtgui_sink_x_0_1.set_update_time(1.0/10)
+        self._qtgui_sink_x_0_1_win = sip.wrapinstance(self.qtgui_sink_x_0_1.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_sink_x_0_1_win)
+        
+        self.qtgui_sink_x_0_1.enable_rf_freq(False)
+        
+        
+          
+        self.qtgui_sink_x_0 = qtgui.sink_f(
+        	1024, #fftsize
+        	firdes.WIN_BLACKMAN_hARRIS, #wintype
+        	0, #fc
+        	sound_card_sample_rate, #bw
+        	"received-symbol", #name
+        	True, #plotfreq
+        	True, #plotwaterfall
+        	True, #plottime
+        	True, #plotconst
+        )
+        self.qtgui_sink_x_0.set_update_time(1.0/10)
+        self._qtgui_sink_x_0_win = sip.wrapinstance(self.qtgui_sink_x_0.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_sink_x_0_win)
+        
+        self.qtgui_sink_x_0.enable_rf_freq(False)
+        
+        
+          
         self.fft_filter_xxx_0 = filter.fft_filter_fff(1, (variable_rrc_filter_taps), 1)
         self.fft_filter_xxx_0.declare_sample_delay(0)
         self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_fff(samples_per_symbol, 0.5, (variable_rrc_filter_taps), 32, 0, 1.5, 1)
         self.digital_hdlc_deframer_bp_0 = digital.hdlc_deframer_bp(32, 500)
-        self.blocks_wavfile_source_0 = blocks.wavfile_source('rx_signal.wav', False)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_float*1, sound_card_sample_rate,True)
         self.blocks_threshold_ff_0 = blocks.threshold_ff(-0.01, 0.01, 0)
         self.blocks_tagged_file_sink_0 = blocks.tagged_file_sink(gr.sizeof_char*1, bit_rate)
         self.blocks_pdu_to_tagged_stream_0 = blocks.pdu_to_tagged_stream(blocks.byte_t, 'burst')
         self.blocks_float_to_char_0 = blocks.float_to_char(1, 1)
+        self.audio_source_0 = audio.source(sound_card_sample_rate, '', True)
 
         ##################################################
         # Connections
         ##################################################
         self.msg_connect((self.digital_hdlc_deframer_bp_0, 'out'), (self.blocks_pdu_to_tagged_stream_0, 'pdus'))    
+        self.connect((self.audio_source_0, 0), (self.blocks_throttle_0, 0))    
+        self.connect((self.audio_source_0, 0), (self.qtgui_sink_x_0, 0))    
         self.connect((self.blocks_float_to_char_0, 0), (self.digital_hdlc_deframer_bp_0, 0))    
         self.connect((self.blocks_pdu_to_tagged_stream_0, 0), (self.blocks_tagged_file_sink_0, 0))    
         self.connect((self.blocks_threshold_ff_0, 0), (self.blocks_float_to_char_0, 0))    
         self.connect((self.blocks_throttle_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))    
-        self.connect((self.blocks_throttle_0, 0), (self.fft_filter_xxx_0, 0))    
-        self.connect((self.blocks_wavfile_source_0, 0), (self.blocks_throttle_0, 0))    
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.blocks_threshold_ff_0, 0))    
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.fft_filter_xxx_0, 0))    
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_sink_x_0_1, 0))    
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_time_sink_x_1, 0))    
         self.connect((self.digital_pfb_clock_sync_xxx_0, 1), (self.qtgui_time_sink_x_1_0, 0))    
         self.connect((self.digital_pfb_clock_sync_xxx_0, 2), (self.qtgui_time_sink_x_1_1, 0))    
@@ -345,6 +386,8 @@ class rx_top(gr.top_block, Qt.QWidget):
         self.sound_card_sample_rate = sound_card_sample_rate
         self.set_symbol_rate(self.sound_card_sample_rate/self.samples_per_symbol)
         self.qtgui_time_sink_x_1_2_0.set_samp_rate(self.sound_card_sample_rate)
+        self.qtgui_sink_x_0_1.set_frequency_range(0, self.sound_card_sample_rate)
+        self.qtgui_sink_x_0.set_frequency_range(0, self.sound_card_sample_rate)
         self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
 
     def get_samples_per_symbol(self):

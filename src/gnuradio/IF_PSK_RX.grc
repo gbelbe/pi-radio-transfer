@@ -767,7 +767,11 @@
     </param>
     <param>
       <key>_coordinate</key>
+<<<<<<< HEAD
       <value>(352, 908)</value>
+=======
+      <value>(791, 760)</value>
+>>>>>>> 628bebc73ce2ac60ddb2ae7eb8584f99c0a9e7eb
     </param>
     <param>
       <key>_rotation</key>
@@ -779,7 +783,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>byte</value>
+      <value>complex</value>
     </param>
     <param>
       <key>tag</key>
@@ -814,7 +818,11 @@
     </param>
     <param>
       <key>_coordinate</key>
+<<<<<<< HEAD
       <value>(632, 916)</value>
+=======
+      <value>(1048, 760)</value>
+>>>>>>> 628bebc73ce2ac60ddb2ae7eb8584f99c0a9e7eb
     </param>
     <param>
       <key>_rotation</key>
@@ -1041,7 +1049,11 @@
     </param>
     <param>
       <key>_coordinate</key>
+<<<<<<< HEAD
       <value>(64, 609)</value>
+=======
+      <value>(595, 752)</value>
+>>>>>>> 628bebc73ce2ac60ddb2ae7eb8584f99c0a9e7eb
     </param>
     <param>
       <key>_rotation</key>
@@ -1229,14 +1241,26 @@
       <value>(272, 152)</value>
     </param>
     <param>
+<<<<<<< HEAD
       <key>gui_hint</key>
       <value></value>
+=======
+      <key>_coordinate</key>
+      <value>(311, 696)</value>
+>>>>>>> 628bebc73ce2ac60ddb2ae7eb8584f99c0a9e7eb
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
     <param>
+<<<<<<< HEAD
+=======
+      <key>mod_code</key>
+      <value>"none"</value>
+    </param>
+    <param>
+>>>>>>> 628bebc73ce2ac60ddb2ae7eb8584f99c0a9e7eb
       <key>id</key>
       <value>final_0</value>
     </param>
