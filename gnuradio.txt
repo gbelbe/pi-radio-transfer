@@ -1,10 +1,66 @@
+#########################
+# RASPBIAN LITE INSTALL #
+#########################
+
+#Go with root permissions
+sudo su -
+
+#Upgrade OS
+apt-get -y update && apt-get -y upgrade
+
+#If kernel upgrade - reboot
+
+#Install software requirements
+apt-get -y install p7zip-full git python-pip cmake python-dev
+
+#Install python packages requirements
+pip install zfec PyBOMBS
+
+#Go back with user permissions
+exit
+
+#Install gnuradio
+pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
+pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
+mkdir ~/pybombs
+pybombs prefix init ~/pybombs
+pybombs install gnuradio
+
+#Init environment
+source ~/pybombs/setup_env.sh
+
+#Clone repository
+cd /home
+git clone https://github.com/gbelbe/pi-radio-transfer.git
+
+
+#TODO: default sound card management
+
+#Install it
+cd 
+mkdir build && cd build && cmake ../ && make && sudo make install && sudo ldconfig
+
+#Start it
+
+
+
+
+##########################
+# CUSTOM GNURADIO MODULE #
+##########################
+
+#Initialize skeleton for custom module for gnuradio
 gr_modtool create raspi_decoder
 cd gr-raspi_decoder
 gr_modtool add psk_constellation_decoder
-[DO THE STUFF HERE / python code + grc xml descriptor]
+
+#[DO THE STUFF HERE / python code + grc xml descriptor]
+
+#Build and install it
 mkdir build
 cd build
 cmake ../
 make
 sudo make install
 sudo ldconfig
+
