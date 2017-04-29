@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: If Psk Rx
 # Description: IF PSK RX
-# Generated: Sat Apr 29 20:06:33 2017
+# Generated: Sat Apr 29 20:39:42 2017
 ##################################################
 
 if __name__ == '__main__':
@@ -65,7 +65,7 @@ class if_psk_rx(gr.top_block, Qt.QWidget):
         self.if_decimation = if_decimation = 2
         self.sound_card_sample_rate = sound_card_sample_rate = 11025
         self.samples_per_symbol = samples_per_symbol = 16/if_decimation
-        self.symbol_rate = symbol_rate = sound_card_sample_rate/samples_per_symbol
+        self.symbol_rate = symbol_rate = sound_card_sample_rate/if_decimation/samples_per_symbol
         self.bits_per_symbol = bits_per_symbol = 2
         self.rolloff = rolloff = 0.5
         self.hdlc_packet_overhead = hdlc_packet_overhead = 6*8
@@ -432,13 +432,14 @@ class if_psk_rx(gr.top_block, Qt.QWidget):
         self.qtgui_sink_x_0.set_frequency_range(0, self.sound_card_sample_rate/self.if_decimation)
         self.qtgui_sink_x_0_0.set_frequency_range(0, self.sound_card_sample_rate/self.if_decimation)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.sound_card_sample_rate/self.if_decimation)
+        self.set_symbol_rate(self.sound_card_sample_rate/self.if_decimation/self.samples_per_symbol)
 
     def get_sound_card_sample_rate(self):
         return self.sound_card_sample_rate
 
     def set_sound_card_sample_rate(self, sound_card_sample_rate):
         self.sound_card_sample_rate = sound_card_sample_rate
-        self.set_symbol_rate(self.sound_card_sample_rate/self.samples_per_symbol)
+        self.set_if_frequency(self.sound_card_sample_rate/4)
         self.analog_sig_source_x_0.set_sampling_freq(self.sound_card_sample_rate)
         self.analog_sig_source_x_0_0.set_sampling_freq(self.sound_card_sample_rate)
         self.blocks_throttle_0.set_sample_rate(self.sound_card_sample_rate)
@@ -448,14 +449,14 @@ class if_psk_rx(gr.top_block, Qt.QWidget):
         self.qtgui_sink_x_0.set_frequency_range(0, self.sound_card_sample_rate/self.if_decimation)
         self.qtgui_sink_x_0_0.set_frequency_range(0, self.sound_card_sample_rate/self.if_decimation)
         self.qtgui_time_sink_x_0_0.set_samp_rate(self.sound_card_sample_rate/self.if_decimation)
-        self.set_if_frequency(self.sound_card_sample_rate/4)
+        self.set_symbol_rate(self.sound_card_sample_rate/self.if_decimation/self.samples_per_symbol)
 
     def get_samples_per_symbol(self):
         return self.samples_per_symbol
 
     def set_samples_per_symbol(self, samples_per_symbol):
         self.samples_per_symbol = samples_per_symbol
-        self.set_symbol_rate(self.sound_card_sample_rate/self.samples_per_symbol)
+        self.set_symbol_rate(self.sound_card_sample_rate/self.if_decimation/self.samples_per_symbol)
 
     def get_symbol_rate(self):
         return self.symbol_rate
