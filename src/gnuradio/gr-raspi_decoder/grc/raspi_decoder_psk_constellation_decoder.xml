@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<!--
+###################################################
+##PSK Constellation Demod
+###################################################
+ -->
+<block>
+  <name>PSK constellation decoder</name>
+  <key>raspi_decoder_psk_constellation_decoder</key>
+  <category>Symbol Coding</category>
+  <import>import raspi_decoder</import>
+  <make>raspi_decoder.psk_constellation_decoder(
+  bits_per_symbol=$bits_per_symbol,
+  differential=$differential,
+  mod_code=$mod_code,
+  debug=$debug,
+  )</make>
+  <param>
+    <name>Bits per symbol</name>
+    <key>bits_per_symbol</key>
+    <value>2</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Differential Encoding</name>
+    <key>differential</key>
+    <value>True</value>
+    <type>bool</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>Gray Code</name>
+    <key>mod_code</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>"gray"</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>"none"</key>
+    </option>
+  </param>
+  <param>
+    <name>Debug</name>
+    <key>debug</key>
+    <value>False</value>
+    <type>bool</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

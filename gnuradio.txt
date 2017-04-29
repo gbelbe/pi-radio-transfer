@@ -1,0 +1,10 @@
+gr_modtool create raspi_decoder
+cd gr-raspi_decoder
+gr_modtool add psk_constellation_decoder
+[DO THE STUFF HERE / python code + grc xml descriptor]
+mkdir build
+cd build
+cmake ../
+make
+sudo make install
+sudo ldconfig
