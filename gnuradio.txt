@@ -30,7 +30,7 @@ pybombs install gnuradio
 source ~/pybombs/setup_env.sh
 
 #Clone repository
-cd /home
+cd ~
 git clone https://github.com/gbelbe/pi-radio-transfer.git
 
 
