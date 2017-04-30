@@ -1,9 +1,0 @@
-/usr/local/lib/cmake/raspi_decoder/raspi_decoderConfig.cmake
-/usr/local/include/raspi_decoder/api.h
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/__init__.py
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/psk_constellation_decoder.py
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/__init__.pyc
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/psk_constellation_decoder.pyc
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/__init__.pyo
-/usr/local/lib/python2.7/dist-packages/raspi_decoder/psk_constellation_decoder.pyo
-/usr/local/share/gnuradio/grc/blocks/raspi_decoder_psk_constellation_decoder.xml

@@ -6,31 +6,58 @@
 sudo su -
 
 #Upgrade OS
-apt-get -y update && apt-get -y upgrade
+#Standard Debian repo to get gcc package with proper flags (no arm6 only => arm7 also for neon compilation flag)
+#https://brmlab.cz/user/jenda/rpi-gcc
+#http://lukeberndt.com/2016/compiling-gnuradio-on-a-raspberry-pi/
+#Take closest mirror in this list: https://www.debian.org/mirror/list
+echo "deb http://ftp.fr.debian.org/debian/ jessie main contrib non-free" > /etc/apt/sources.list
+echo "deb http://mirrordirector.raspbian.org/raspbian/ jessie rpi" >> /etc/apt/sources.list
+echo "#deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi" >> /etc/apt/sources.list
+
+apt-get -y update && apt-get -y --force-yes install debian-archive-keyring && apt-get update && apt-get -y dist-upgrade
 
 #If kernel upgrade - reboot
 
 #Install software requirements
-apt-get -y install p7zip-full git python-pip cmake python-dev
+apt-get -y install git python-pip cmake python-dev gzip tar
+
+#Go back with standard apt repos:
+apt-get -y install libssl-dev
+
+#?? REQUIRED ?? libtiff5-dev p7zip-full 
 
 #Install python packages requirements
 pip install zfec PyBOMBS
 
+#INCREASE MEMORY / SWAP
+echo "CONF_SWAPSIZE=1024" >> /etc/dphys-swapfile
+systemctl restart dphys-swapfile
+#For checking
+free -m
+
 #Go back with user permissions
 exit
-
-#Install gnuradio
+#Install gnuradio from sources
+#NB: require latest version of GCC from stretch
 pybombs recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git
 pybombs recipes add gr-etcetera git+https://github.com/gnuradio/gr-etcetera.git
 mkdir ~/pybombs
 pybombs prefix init ~/pybombs
-pybombs install gnuradio
-#Take a really big beer, do something else, go sleeping, this is really slow (1 day on RASPI3)
+#Edit ~/.pybombs/recipes/gr-recipes/gnuradio.lwr file and change config_opt:
+vars:
+  config_opt: " -DENABLE_DOXYGEN=$builddocs -DENABLE_GR_AUDIO=ON -DENABLE_GR_BLOCKS=ON -DENABLE_GR_DIGITAL=ON -DENABLE_GR_FEC=ON -DENABLE_GR_FFT=ON -DENABLE_GR_FILTER=ON -DENABLE_GR_QTGUI=OFF -DENABLE_GR_UHD=OFF -DENABLE_PYTHON=ON -DENABLE_VOLK=ON -DENABLE_GRC=OFF -DCMAKE_ASM_FLAGS='-march=armv7-a -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7' -DCMAKE_C_FLAGS='-march=armv7-a -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7"
+  
+  REQUIRED:
+  config_opt: " -DENABLE_DOXYGEN=$builddocs -DCMAKE_ASM_FLAGS='-march=armv7-a -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7' -DCMAKE_C_FLAGS='-march=armv7-a -mthumb-interwork -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7'"
 
+pybombs install gnuradio
+#Take a really big beer, do something else, go sleeping, this is really slow (TBD TIME on RASPI3)
 #Init environment
 source ~/pybombs/setup_env.sh
 
 #TODO: default sound card management
+
+
 
 #Clone repository
 cd ~
@@ -38,7 +65,8 @@ git clone https://github.com/gbelbe/pi-radio-transfer.git
 
 #Install it
 #FIXME: ldconfig required with pybomb?
-cd pi-radio-transfer/src/gr/build && cmake ../ && make && sudo make install && sudo ldconfig
+#FIXME: REMOVE PLUGIN BUILD DIR FROM REPO
+cd pi-radio-transfer/src/gr/gr-raspi_decoder/build/ && cmake ../ && make && sudo make install && sudo ldconfig
 
 #Start it
 cd pi-radio-transfer/src
@@ -48,6 +76,14 @@ python main.py
 ##########################
 # CUSTOM GNURADIO MODULE #
 ##########################
+
+#Doc gnuradio
+#C++ API
+#https://gnuradio.org/doc/doxygen/index.html
+#Python API
+#https://gnuradio.org/doc/sphinx/index.html
+#Wiki
+#https://wiki.gnuradio.org
 
 #Initialize skeleton for custom module for gnuradio
 gr_modtool create raspi_decoder
@@ -63,4 +99,22 @@ cmake ../
 make
 sudo make install
 sudo ldconfig
+
+
+
+#####################################
+# NON WORKING CONFIGS ON 2017/04/30 #
+#####################################
+
+
+#TEST0: install all from stretch ==> PB with cmake segmentations faults
+
+#TEST1: gnuradio from stretch + rest from jessie ==> PB AVEC SRC PKG / CMAKE DESCRIPTORS NOT FOUND
+#Switch to stretch repo only for latest gnuradio installation (replace jessie by stretch in /etc/apt/sources.list)
+#apt-get update
+#apt-get install gnuradio
+#Switch back to standard jessie repo (replace stretch by jessie in /etc/apt/sources.list)
+#apt-get update
+
+#TEST2: pybomb on standard jessie ==> PB with CPU flags
 
