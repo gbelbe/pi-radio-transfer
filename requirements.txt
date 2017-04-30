@@ -1,7 +1,6 @@
 #Flask==0.10.1
 #numpy
 zfec
-time
 RPi.GPIO
 
 
