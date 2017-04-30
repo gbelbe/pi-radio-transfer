@@ -1,5 +1,7 @@
 #Flask==0.10.1
 #numpy
-#zfec
+zfec
+time
+RPi.GPIO
 
 
