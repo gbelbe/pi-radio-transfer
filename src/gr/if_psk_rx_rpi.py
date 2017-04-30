@@ -23,18 +23,20 @@ import raspi_decoder
 
 class if_psk_rx_rpi(gr.top_block):
 
-    def __init__(self):
+    def __init__(self, bits_per_symbol=2, rolloff=0.5, sound_card_sample_rate=22000):
         gr.top_block.__init__(self, "If Psk Rx Rpi")
+
+#TODO: CHECK BOUNDARIES OF INPUT PARAMETERS
 
         ##################################################
         # Variables
         ##################################################
         self.if_decimation = if_decimation = 2
-        self.sound_card_sample_rate = sound_card_sample_rate = 11025
+        self.sound_card_sample_rate = sound_card_sample_rate
         self.samples_per_symbol = samples_per_symbol = 16/if_decimation
         self.symbol_rate = symbol_rate = sound_card_sample_rate/if_decimation/samples_per_symbol
-        self.bits_per_symbol = bits_per_symbol = 2
-        self.rolloff = rolloff = 0.5
+        self.bits_per_symbol = bits_per_symbol
+        self.rolloff = rolloff
         self.hdlc_packet_overhead = hdlc_packet_overhead = 6*8
         self.hdlc_packet_length = hdlc_packet_length = 16*8
         self.channel_bit_rate = channel_bit_rate = symbol_rate*bits_per_symbol
