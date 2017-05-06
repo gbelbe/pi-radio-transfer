@@ -4,9 +4,6 @@ FROM resin/%%RESIN_MACHINE_NAME%%-python
 
 # Install ALSA sound utils and GnuRadio and 7zip
 
-
-
-
 RUN apt-get update && apt-get upgrade && apt-get install -yq \
     alsa-utils libasound2 gnuradio p7zip-full cmake && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -33,7 +30,7 @@ COPY . ./
 ENV INITSYSTEM on
 
 #build additionnal custom gnuradio module included in project
-#RUN cd /usr/src/app/src/gnuradio/gr-raspi_decoder/build && cmake ../ && make && make install && ldconfig
+RUN cd /usr/src/app/src/gnuradio/gr-raspi_decoder/build && cmake ../ && make && make install && ldconfig
 
 # main.py will run when container starts up on the device
 CMD ["python","src/main.py"]
