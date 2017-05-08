@@ -1,4 +1,4 @@
-## A simple tool to transmit files from a Linux Embedded device using HF radio 
+## A simple tool to transmit files from a Raspberry Pi using HF radio 
 #
 
 =====Setting up the environment====
@@ -8,7 +8,9 @@ Click on your application, and download the ResinOS image for this application.
 
 2) burn this image on your sd card with [etcher.io](http://etcher.io) 
 
-3) Insert the sd card on your device, connect it to ethernet (or your wifi network) and start it. 
+3) In case needed, check [here](https://docs.resin.io/deployment/network/2.0.0/#wifi-setup) to configure Wifi connections
+
+4) Insert the sd card on your device, connect it to ethernet (or your wifi network) and start it. 
    Go back to your resin.io pannel and check that your device is being installed.
 
 5) Clone this repo locally
