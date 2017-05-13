@@ -3,6 +3,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-python
 
 # Install ALSA sound utils and GnuRadio and 7zip
+# check gnuradio version:  gnuradio-config-info --version
 
 RUN apt-get update && apt-get upgrade && apt-get install -yq \
     alsa-utils libasound2 gnuradio p7zip-full cmake && \
